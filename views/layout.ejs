@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= title %></title>
+    <link rel="stylesheet" href="/css/header.css">
+    <!-- CSS ที่ใช้ร่วมกันในทุกหน้า -->
+    <link rel="stylesheet" href="/css/common.css">
+    <!-- CSS เฉพาะของแต่ละหน้า -->
+    <% if (cssFiles && cssFiles.length) { %>
+        <% cssFiles.forEach(function(file) { %>
+            <link rel="stylesheet" href="<%= file %>">
+        <% }) %>
+    <% } %>
+</head>
+<body>
+    <header>
+        <h1>My App</h1>
+        <nav>
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="/about">About</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <%- include(body) %>
+    </main>
+    <footer>2024 ทดสอบ</footer>
+    <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+    <!-- JavaScript เฉพาะของแต่ละหน้า -->
+    <% if (jsFiles && jsFiles.length) { %>
+        <% jsFiles.forEach(function(file) { %>
+            <script src="<%= file %>"></script>
+        <% }) %>
+    <% } %>
+</body>
+</html>

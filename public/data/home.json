@@ -1,0 +1,10 @@
+{
+    "code": 200,
+    "status": "success",
+    "data": [
+        {
+            "id": 0,
+            "title": "product 1"
+        }
+    ]
+}

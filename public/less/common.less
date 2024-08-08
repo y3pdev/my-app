@@ -1,0 +1,57 @@
+/* รีเซ็ตค่าพื้นฐาน */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+}
+
+html, body {
+    height: 100%;
+    font-family: Arial, sans-serif;
+}
+
+/* รีเซ็ตการแสดงผลเบื้องต้นขององค์ประกอบต่างๆ */
+body {
+    line-height: 1.6;
+}
+
+body main {
+    width: 100vw;
+    height: calc(~"100vh - 120px");
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+ul, ol {
+    list-style: none;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+/* ตั้งค่าแบบฟอร์ม */
+input, button, textarea, select {
+    font: inherit;
+}
+
+/* ตั้งค่าการแสดงผลสำหรับ heading */
+h1, h2, h3, h4, h5, h6 {
+    font-weight: normal;
+}
+
+/* ตั้งค่ากล่องของ iframe, embed, object ให้มีการแสดงผลตามเนื้อหา */
+iframe, embed, object {
+    max-width: 100%;
+}
