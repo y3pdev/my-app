@@ -7,7 +7,7 @@ const pool = require('../db');
 router.get('/news', async (req, res) => {
     try {
         const [rows] = await pool.query('SELECT * FROM profile_tb');
-        res.json({ data: rows });
+        // res.json({ data: rows });
     } catch (err) {
         console.error('Database query error:', err.message, err.stack);
         res.status(500).send('Database query error: ' + err.message);
