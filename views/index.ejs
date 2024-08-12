@@ -1,37 +1,22 @@
-<h2>Manage Profiles</h2>
-<table>
-    <thead>
-        <tr>
-            <th>ID</th>
-            <th>English Name</th>
-            <th>Thai Name</th>
-            <th>Email</th>
-            <th>Actions</th>
-        </tr>
-    </thead>
-    <tbody>
-        <% data.forEach(function(profile) { %>
-            <tr>
-                <td><%= profile.id %></td>
-                <td><%= profile.eng_name %></td>
-                <td><%= profile.thai_name %></td>
-                <td><%= profile.email %></td>
-                <td>
-                    <button class="edit" data-id="<%= profile.id %>" data-eng_name="<%= profile.eng_name %>" data-thai_name="<%= profile.thai_name %>" data-email="<%= profile.email %>">Edit</button>
-                    <button class="delete" data-id="<%= profile.id %>">Delete</button>
-                </td>
-            </tr>
-        <% }) %>
-    </tbody>
-</table>
-
-<h3>Add New Profile</h3>
-<form id="addForm" action="/profile" method="POST">
-    <label for="eng_name">English Name:</label>
-    <input type="text" id="eng_name" name="eng_name" required>
-    <label for="thai_name">Thai Name:</label>
-    <input type="text" id="thai_name" name="thai_name" required>
-    <label for="email">Email:</label>
-    <input type="email" id="email" name="email" required>
-    <button type="submit">Add</button>
-</form>
+<div class="wrap-content">
+    <div class="inner">
+        <div class="content">
+            <div id="dataList"></div>
+        </div>
+        <form id="form_elm">
+            <div class="box-inp">
+                <label for="phone">Enter a Fullname:</label>
+                <input type="text" name="eng_name" placeholder="นนน กกก" required>
+            </div>
+            <div class="box-inp">
+                <label for="phone">Enter a phone number:</label>
+                <input type="text" id="phone" name="phone" placeholder="1234567890" required>
+            </div>
+            <div class="box-inp">
+                <label for="phone">Enter a Email:</label>
+                <input type="email" name="email" placeholder="name@email.com" required>
+            </div>
+        </form>
+        <div class="btn-submit">บันทึก</div>
+    </div>
+</div>

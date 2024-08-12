@@ -1,1 +1,1 @@
-header{max-height:120px}header nav ul{display:flex}header nav ul li{margin-right:10px}header nav ul li:last-child{margin-right:unset}
+header{max-height:120px;border-bottom:1px solid;text-align:right;padding:10px 20px}header nav ul{display:flex}header nav ul li{margin-right:10px}header nav ul li:last-child{margin-right:unset}

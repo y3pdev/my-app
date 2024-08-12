@@ -1,43 +1,71 @@
 $(document).ready(function() {
-    // ฟังก์ชันแก้ไขข้อมูล
-    $('.edit').on('click', function() {
-        const id = $(this).data('id');
-        const eng_name = $(this).data('eng_name');
-        const thai_name = $(this).data('thai_name');
-        const email = $(this).data('email');
-        const newEngName = prompt('Enter new English name:', eng_name);
-        const newThaiName = prompt('Enter new Thai name:', thai_name);
-        const newEmail = prompt('Enter new email:', email);
-        if (newEngName && newThaiName && newEmail) {
-            $.ajax({
-                url: `/profile/${id}`,
-                method: 'PUT',
-                contentType: 'application/json',
-                data: JSON.stringify({ eng_name: newEngName, thai_name: newThaiName, email: newEmail }),
-                success: function(response) {
-                    location.reload();
-                },
-                error: function(xhr, status, error) {
-                    console.error('Error updating profile:', error);
-                }
-            });
-        }
+    getDataList();
+
+    $(".btn-submit").on("click", function() {
+        submitData($(this));
+    })
+});
+
+function submitData(elm) {
+    let formDataArray = $("#form_elm").serializeArray();
+    let formDataObject = {};
+    formDataArray.forEach(function(item) {
+        formDataObject[item.name] = item.value;
     });
 
-    // ฟังก์ชันลบข้อมูล
-    $('.delete').on('click', function() {
-        const id = $(this).data('id');
-        if (confirm('Are you sure you want to delete this profile?')) {
-            $.ajax({
-                url: `/profile/${id}`,
-                method: 'DELETE',
-                success: function(response) {
-                    location.reload();
-                },
-                error: function(xhr, status, error) {
-                    console.error('Error deleting profile:', error);
-                }
-            });
+    $.ajax({
+        url: BASE_URL + "api/news",
+        type: 'POST',
+        dataType: 'json',
+        contentType: 'application/json',
+        data: JSON.stringify(formDataObject),
+        success: function(res) {
+            console.log(res.message);
+        },
+        error: function(err) {
+            console.error('Error adding data:', err);
         }
     });
-});
+}
+
+function deleteData(id) {
+    $.ajax({
+        url: BASE_URL + "api/news/" + id,
+        type: 'DELETE',
+        success: function(res) {
+            console.log(res.message); // แสดงข้อความยืนยัน
+        },
+        error: function(err) {
+            console.error('Error deleting data:', err);
+        }
+    });
+}
+
+function getDataList() {
+    $.ajax({
+        url: BASE_URL + "api/news",
+        type: 'GET',
+        dataType: 'json',
+        cache: false,
+        success: function(res) {
+            console.log(res);
+            renderDataList(res.data);
+        },
+        error: function(err) {
+            console.error('Error fetching data:', err);
+        }
+    });
+}
+
+function renderDataList(data) {
+    var dataList = document.getElementById('dataList');
+    dataList.innerHTML = ''; // ล้างข้อมูลเก่า
+
+    if (data.length > 0) {
+        data.forEach(function(item) {
+            dataList.innerHTML += `<div>${item.eng_name} (${item.email})</div>`;
+        });
+    } else {
+        dataList.innerHTML = '<div>No data found.</div>';
+    }
+}
